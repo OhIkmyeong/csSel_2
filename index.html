@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>custom_select v2.0</title>
+<link rel="stylesheet" type="text/css" href="./style.css"/>
+<script src="./main.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>custom_select v2.0</h1>
+        <div>
+            하지만 가장 좋은것은 그냥 시멘틱 태그인 select를 쓰는 것이지요....
+            <br>커스텀 셀렉트같은걸 쓴다면 웹표준을 지키기 위해 추가해야할 기능이 더욱 많아지기 때문입니다. (e.키보드로도 동작 되게끔)
+        </div>
+        <div>추가한 기능</div>
+        <ol>
+            <li>그냥 csSel이라는 클래스만 select dom에 달아주면 알아서!</li>
+            <li>option을 줄 수 있어요 (개발자모드로 확인용, 원래 select가 보이게 할 것인가 아닌가)</li>
+            <li>키보드로 focus도 되고. 화살표로는 위아래로. Enter나 space시 선택되게 할 거에용</li>
+            <li>추가되는 custom_select는 block레벨임으로 container의 display을 잘 조정해보세요~</li>
+        </ol>
+    </header>
+
+    <main>
+        <div class="your_container">
+            <div>가장 기대되는 게임은 무엇인가요?</div>
+            <select class="csSel">
+                <option>:: 선택 ::</option>
+                <option value="overwatch_2">오버워치2</option>
+                <option value="princessMaker_9">프린세스메이커9</option>
+                <option value="bubblebubble3000">보글보글3000</option>
+            </select><!-- csSel -->
+
+            
+        </div>
+
+        <div class="your_container">
+            <div>사실 5개 이하의 설문지면 radio로 대체하도록 합시다. 근데 예제 만들기 귀찮아앙</div>
+            <select class="csSel">
+                <option>:: 선택 ::</option>
+                <option value="t1">t1</option>
+                <option value="t2">t2</option>
+                <option value="t3">t3 만일 내가 절라게 길다면 어떻게 반응할까잉</option>
+                <option value="t4">t4</option>
+                <option value="t5">t5</option>
+            </select><!-- csSel -->
+        </div>
+    </main>
+
+    <template>
+        <div class="csSel_wrap">
+            <div class="csSel_selected" tabindex="0">선택된건 여기엥</div>
+            <ul class="csSel_list">
+                <li tabindex="0">test01</li>
+            </ul>
+        </div>
+    </template>
+</body>
+</html>
