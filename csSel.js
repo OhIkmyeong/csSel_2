@@ -141,24 +141,36 @@ export class csSel{
 
         /* selected 관련 이벤트 */
         $selected.addEventListener('keydown',(e)=>{
-            if(e.code == "ArrowDown" || e.code == "ArrowUp"){
-                const val = $selected.dataset.value;
-                const lastSelected = $csSel.querySelector(`[data-value="${val}"]`) ?? $all_li[0];
-                lastSelected.focus();
-            }//if
+            switch(e.code){
+                case "Escape" :
+                    e.target.blur();
+                    break;
+                
+                case "ArrowDown":
+                case "ArrowUp":
+                    this.get_last_selected($selected,$csSel,$all_li);
+                    break;
+            }//switch
         });
+
+        $selected.addEventListener('focus', ()=>{this.get_last_selected($selected,$csSel,$all_li);});
 
         /* list 관련 이벤트 */
         $csSel.addEventListener('click',this.on_select);
         $csSel.addEventListener('keydown',(e)=>{
-            e.preventDefault();
             const target = e.target;
             switch(e.code){
+                case "Escape" :
+                    target.blur();
+                    break;
+
                 case "ArrowDown" :
+                    e.preventDefault();
                     const $next = target.nextElementSibling ?? $all_li[0];
                     $next.focus();
                     break;
                 case "ArrowUp" :
+                    e.preventDefault();
                     const $prev = target.previousElementSibling ?? $all_li[$all_li.length - 1];
                     $prev.focus();
                     break;
@@ -192,6 +204,14 @@ export class csSel{
             target.blur();
         }, 200);
     }//on_select
+
+    /* 가장 마지막으로 선택됬던거 가져오기 */
+    get_last_selected($selected,$csSel,$all_li){
+        console.log('ㅋㅋ');
+        const val = $selected.dataset.value;
+        const lastSelected = $csSel.querySelector(`[data-value="${val}"]`) ?? $all_li[0];
+        lastSelected.focus();
+    }//get_last_selected
 
     /* custom select의 seleted 바꾸기 */
     change_selected($selected,val,content){
