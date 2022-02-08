@@ -64,7 +64,7 @@ export class csSel{
         return $wrap;
     }//wrap
 
-    make_selected(option){
+    make_selected(){
         const $selected = document.createElement('DIV');
         $selected.classList.add('csSel_selected');
         $selected.tabIndex = 0;
@@ -134,6 +134,7 @@ export class csSel{
         /* list 관련 이벤트 */
         $csSel.addEventListener('click',this.on_select);
         $csSel.addEventListener('keydown',(e)=>{
+            e.preventDefault();
             const target = e.target;
             switch(e.code){
                 case "ArrowDown" :
