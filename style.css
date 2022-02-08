@@ -1,6 +1,8 @@
 @charset "utf-8";
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:#e1e1e3;}
+html,body{
+    width:100%;min-height:100vh;
+    background:#e1e1e3;}
 
 header{
     position:relative;
@@ -9,6 +11,9 @@ header{
     background:#fafafc;}
 
 header ol{padding-left:3rem; margin-top:.5rem;}
+dl{margin-bottom:1em;}
+dt{font-weight:bold;}
+dd{padding-left:1em; margin-top:.5em;}
 
 /*  */
 main{
@@ -23,31 +28,33 @@ main{
     justify-content:center; align-items:center;
     position:relative;
     width:100%;
-    margin:2rem auto;}
+    margin:2rem auto; padding:1em;
+    border:1px solid black;}
 
 /* csSel */
 .csSel{
     /* 개발 확인용으로 보는것입니다 ^*^ */
     /* 기존 select를 살리고 가리기만 하고 싶으시다면 css에서 수정하세요. */
     /* 아니라면 js에서 삭제해버리세요. */
-    position:absolute;
-    transform:translateY(-100%);
+    position:relative;
     opacity:.5;
-    pointer-events:none; user-select:none;}
+    margin-left:1em;
+    pointer-events:none; user-select:none;
+}
     
 /* csCel_wrap */
 .csSel_wrap{
     display:flex;flex-flow:column nowrap;
-    position:relative;}
+    position:relative;
+    margin-left:1em;}
 
     /* 선택된건 이렇게 보여줄거에요 */
     .csSel_selected{
         position:relative;
-        width:100%;
         padding:1em; padding-right:4em;
         background:#fff; border:2px solid dodgerblue;
-        user-select:none;
-        cursor:pointer;}
+        user-select:none;cursor:pointer;
+        transition:all .3s linear;}
 
     .csSel_selected:focus{outline:5px solid dodgerblue;}
 
@@ -69,9 +76,9 @@ main{
 
         /* selected가 focus되어야만 보입니다 */
         .your_container:focus-within .csSel_list{
+            z-index:10;
             opacity:1; pointer-events:all; transform:translateY(0);
-            transition:all .3s;
-        }
+            transition:all .3s;}
 
     .csSel_list li{
         list-style-type:none;

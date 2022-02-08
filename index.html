@@ -18,7 +18,13 @@
         <div>추가한 기능</div>
         <ol>
             <li>그냥 csSel이라는 클래스만 select dom에 달아주면 알아서!</li>
-            <li>option을 줄 수 있어요 (개발자모드로 확인용, 원래 select가 보이게 할 것인가 아닌가)</li>
+            <li>
+                <dl>
+                    <dt>option을 줄 수 있어요 (개발자모드로 확인용, 원래 select가 보이게 할 것인가 아닌가)</dt>
+                    <dd>오리지날 select dom의 값을 사용할거라면 기본형으로 쓰시고</dd>
+                    <dd>custom select의 data-value 값을 사용할거라면, make_custom 메쏘드에서 insertBefore구문 다음에 select를 삭제해주세요.</dd>
+                </dl>
+            </li>
             <li>키보드로 focus도 되고. 화살표로는 위아래로. Enter나 space시 선택되게 할 거에용</li>
             <li>추가되는 custom_select는 block레벨임으로 container의 display을 잘 조정해보세요~</li>
         </ol>
@@ -34,7 +40,7 @@
                 <option value="bubblebubble3000">보글보글3000</option>
             </select><!-- csSel -->
 
-            
+            <div>이런 식으로 select 뒤에 어떤 요소가 오든.. 상관이 없어요</div>
         </div>
 
         <div class="your_container">
@@ -50,11 +56,18 @@
         </div>
     </main>
 
+
+    <footer>
+        <div>깃허브 : <a href="https://github.com/OhIkmyeong" target="_blank">github.com/OhIkmyeong</a></div>
+        <div>티스토리 : <a href="https://aosceno.tistory.com" target="_blank">aosceno.tistory.com</a></div>
+    </footer>
+
+
     <template>
         <div class="csSel_wrap">
-            <div class="csSel_selected" tabindex="0">선택된건 여기엥</div>
+            <div class="csSel_selected" tabindex="0" data-value="">선택된건 여기엥</div>
             <ul class="csSel_list">
-                <li tabindex="0">test01</li>
+                <li tabindex="0" data-value="">test01</li>
             </ul>
         </div>
     </template>
