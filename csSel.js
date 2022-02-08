@@ -48,11 +48,14 @@ export class csSel{
         //사이즈 조정 및 selected 추가
         this.set_size($wrap);
 
-        /***
-         * 만일 오리지날 select dom을 사용하지 않고
-         * custom의 data-value를 사용할거라면
-         * 여기서 $select를 제거하시면 됩니다.
-         ***/ 
+        /* 개발자모드 관련 : select를 보이겠음? */
+        if(!this.option.visible){this.not_visible($select);}
+
+        /* 기존 select를 죽일것인가? */
+        if(this.option.delete){
+            this.delete_select($parent,$select);
+        }
+
 
         //이벤트 달아주기
         this.addEvent($wrap);
@@ -116,6 +119,20 @@ export class csSel{
         this.change_selected($selected,firstVal,firstContent);
     }//set_size
 
+    /* not_visible */
+    not_visible($select){
+        $select.style.position = "absolute";
+        $select.style.opacity = 0;
+        $select.style.overflow = "hidden";
+        $select.style.width = 0;
+        $select.style.height = 0;
+    }//not_visible
+
+    /* delete_select */
+    delete_select($parent,$select){
+        $parent.removeChild($select);
+    }//delete_select
+
     /* add EventListener */
     addEvent($wrap){
         const $selected = $wrap.querySelector('.csSel_selected');
@@ -163,9 +180,12 @@ export class csSel{
         const $selected = target.parentElement.previousElementSibling;
         this.change_selected($selected,val,content);
 
-        const $realSelect = target.parentElement.parentElement.previousElementSibling;
-        const selectThis = $realSelect.querySelector(`[value="${val}"]`) ?? $realSelect.children[0];
-        selectThis.selected = true;
+        /* 기존 select dom 바꿔주기 */
+        if(!this.option.delete){
+            const $realSelect = target.parentElement.parentElement.previousElementSibling;
+            const selectThis = $realSelect.querySelector(`[value="${val}"]`) ?? $realSelect.children[0];
+            selectThis.selected = true;
+        }//if
 
         //일정 시간뒤 포커싱을 해제한다.
         setTimeout(()=>{
